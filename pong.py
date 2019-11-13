@@ -1,5 +1,7 @@
 import turtle
+import os
 import winsound
+import sys
 
 # Screen setup
 wn = turtle.Screen()
@@ -137,14 +139,24 @@ while True:
     if ball.ycor() > wn.window_height()//2.5:
         ball.sety(wn.window_height()//2.5)
         ball.dy *= -1
-        winsound.PlaySound(
-            "pong_blip", winsound.SND_ASYNC | winsound.SND_FILENAME)
+        if sys.platform == "win32" or sys.platform == "cygwin":
+            winsound.PlaySound(
+                "pong_blip", winsound.SND_ASYNC | winsound.SND_FILENAME)
+        elif sys.platform == "darwin":
+            os.system("afplay pong_blip.wav&")
+        else:
+            os.system("aplay pong_blip.wav&")
 
     if ball.ycor() < -wn.window_height()//2.5:
         ball.sety(-wn.window_height()//2.5)
         ball.dy *= -1
-        winsound.PlaySound(
-            "pong_blip", winsound.SND_ASYNC | winsound.SND_FILENAME)
+        if sys.platform == "win32" or sys.platform == "cygwin":
+            winsound.PlaySound(
+                "pong_blip", winsound.SND_ASYNC | winsound.SND_FILENAME)
+        elif sys.platform == "darwin":
+            os.system("afplay pong_blip.wav&")
+        else:
+            os.system("aplay pong_blip.wav&")
 
     if ball.xcor() > wn.window_width()//2.3:
         ball.goto(0, 0)
@@ -175,9 +187,13 @@ while True:
     ):
         ball.setx(paddle_b.xcor()-20)
         ball.dx *= -1
-        winsound.PlaySound(
-            "pong_blip", winsound.SND_ASYNC | winsound.SND_FILENAME)
-        ball_speed_up()
+        if sys.platform == "win32" or sys.platform == "cygwin":
+            winsound.PlaySound(
+                "pong_blip", winsound.SND_ASYNC | winsound.SND_FILENAME)
+        elif sys.platform == "darwin":
+            os.system("afplay pong_blip.wav&")
+        else:
+            os.system("aplay pong_blip.wav&")
 
     if (
         ball.xcor() < paddle_a.xcor()+20 and
@@ -187,6 +203,10 @@ while True:
     ):
         ball.setx(paddle_a.xcor()+20)
         ball.dx *= -1
-        winsound.PlaySound(
-            "pong_blip", winsound.SND_ASYNC | winsound.SND_FILENAME)
-        ball_speed_up()
+        if sys.platform == "win32" or sys.platform == "cygwin":
+            winsound.PlaySound(
+                "pong_blip", winsound.SND_ASYNC | winsound.SND_FILENAME)
+        elif sys.platform == "darwin":
+            os.system("afplay pong_blip.wav&")
+        else:
+            os.system("aplay pong_blip.wav&")
